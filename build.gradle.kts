@@ -5,7 +5,7 @@ plugins {
     application
 }
 
-group = "com.school21"
+group = "nukinderuru"
 version = "1.0-SNAPSHOT"
 
 repositories {
