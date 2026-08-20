@@ -5,6 +5,8 @@ A full-stack **Tic-Tac-Toe** application built with **Kotlin/Ktor** on the backe
 
 The project combines persistent storage, JWT-based authentication, multiplayer game sessions, player-vs-computer gameplay, match history, leaderboard statistics, and a browser-based user interface.
 
+![UI_game_VS_computer](/img/game_vs_computer_ui.png)
+
 ---
 
 ## 📖 About the Project
@@ -353,6 +355,79 @@ Persistent data includes:
 
 ---
 
+## 🚀 Build and Run
+
+### Requirements
+
+* Docker with Docker Compose (or Podman)
+* Node.js and npm, only if you want to build the frontend locally outside Docker
+
+### Run with Docker Compose
+
+From the project root, build the application image and start the app with PostgreSQL:
+
+```bash
+docker compose up --build
+```
+
+To run it in the background:
+
+```bash
+docker compose up --build -d
+```
+
+The application will be available at:
+
+```text
+http://localhost:8080
+```
+
+PostgreSQL is exposed on host port `5433` and uses the credentials from `docker-compose.yml`.
+
+### Rebuild the Frontend for Docker
+
+The Docker image builds the React frontend inside the `frontend-builder` stage and copies `view/dist` into the final backend image. After changing frontend code, rebuild and recreate the app container:
+
+```bash
+docker compose build app
+docker compose up -d --force-recreate app
+```
+
+If Docker reuses an old cached layer, rebuild without cache:
+
+```bash
+docker compose build --no-cache app
+docker compose up -d --force-recreate app
+```
+
+Then hard-refresh the browser page.
+
+### Build the Frontend Locally
+
+To build only the frontend outside Docker:
+
+```bash
+cd view
+npm ci
+npm run build
+```
+
+This writes the frontend bundle to `view/dist`. The Docker image still needs to be rebuilt before Docker serves that updated bundle.
+
+### Stop the Project
+
+```bash
+docker compose down
+```
+
+To remove the PostgreSQL volume as well:
+
+```bash
+docker compose down -v
+```
+
+---
+
 ## 🎯 What I Practiced
 
 This project gave me hands-on experience with building and integrating a complete stateful web application.
@@ -385,4 +460,3 @@ This project gave me hands-on experience with building and integrating a complet
 * building a multiplayer lobby;
 * rendering game history and leaderboard data;
 * coordinating frontend state with server-side game state.
-

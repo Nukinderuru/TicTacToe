@@ -59,11 +59,11 @@ kover {
             filters {
                 includes {
                     classes(
-                        "com.school21.domain.service.JwtAuthService",
-                        "com.school21.domain.service.JwtProvider",
-                        "com.school21.domain.service.CurrentGameService",
-                        "com.school21.domain.service.MinimaxGameService",
-                        "com.school21.domain.service.DefaultUserService"
+                        "nukinderuru.domain.service.JwtAuthService",
+                        "nukinderuru.domain.service.JwtProvider",
+                        "nukinderuru.domain.service.CurrentGameService",
+                        "nukinderuru.domain.service.MinimaxGameService",
+                        "nukinderuru.domain.service.DefaultUserService"
                     )
                 }
             }
